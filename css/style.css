@@ -1,0 +1,29 @@
+*{
+    padding:0;
+    margin:0;
+}
+
+body{
+    background:rgba(0,0, 0, 0.5);
+}
+
+.container{
+
+    width:950px;
+    margin:0 auto;
+    text-align: center;
+    background:white;
+    position: relative;
+    padding:15px 0;
+    top:125px;
+    border-radius: 15px;
+    box-shadow: 5px 5px 5px #000000;
+    -webkit-border-radius:15px;
+    -moz-border-radius:15px;
+}
+
+#err{
+    background:tomato;
+    color:white;
+    margin:0 auto;
+}
