@@ -3,6 +3,7 @@ session_start();
 if(isset($_SESSION['withoutAjax']) && $_SESSION['withoutAjax'] == 1){
 
 	echo $_SESSION['err'];
+	var_dump($_SESSION);
 }
 ?>
 <!DOCTYPE html>
@@ -14,9 +15,8 @@ if(isset($_SESSION['withoutAjax']) && $_SESSION['withoutAjax'] == 1){
 </head>
 <body>
 	<div class="container" id="container">
-		<table id="table"></table>
 		<div id="err"></div>
-		<form method="POST" action="connected.php">
+		<form method="POST" action="postRequest.php">
 			<label for="">name</label><br>
 			<input type="text" name="name" id="name"><br>
 			<label for="">password</label><br>
@@ -25,8 +25,7 @@ if(isset($_SESSION['withoutAjax']) && $_SESSION['withoutAjax'] == 1){
 		</form>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-	<script src="function.js"></script>
-	<script src="postRequest.js"></script>
-	<script src="getRequest.js"></script>
+	<script src="js/function.js"></script>
+	<script src="js/postRequest.js"></script>
 </body>
 </html>
