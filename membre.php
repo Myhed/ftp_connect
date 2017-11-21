@@ -1,4 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['identifiant'])){
 
+    header('location:index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +17,8 @@
 <body>
     <div class="container">
         <a href="deconnexion.php" id="deconnexion">Se déconnecter</a>
+        <div class="clearfix"></div>
+        <div id="filAriane"></div>
         <table id="table"></table>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
