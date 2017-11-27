@@ -5,6 +5,7 @@ $('document').ready(function () {
         //Le localStorage n'est pas fixe il peut changer
         let html = localStorage.getItem('Dossier_persos'); //On récupère les dossiers du client dans le local Storage
         html = JSON.parse(html); // On parse le contenu qui était en json
+        console.log(html)
         ftpFunction.contentOfAnyFolder(html.Dossier_persos);
         //Quand l'utilisateur click sur deconnexion il supprime les variable du localStorage et le redirige
         $('#deconnexion').on('click', function (e) {

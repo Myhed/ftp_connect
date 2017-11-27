@@ -10,7 +10,7 @@ if($_POST){
 		if($conn_id){
 			if($login = ftp_login($conn_id,$name,$password)){
 				$val['err'] = false;
-				$val['Dossier_persos'] = ftp_rawlist($conn_id,$folder);
+				$val['Dossier_persos'] = ftp_rawlist($conn_id,'.');
 				$val['identifiant'] = $name;
 			
 				$_SESSION['identifiant'] = $name;
