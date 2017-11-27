@@ -1,9 +1,8 @@
 <?php 
 session_start();
-if(isset($_SESSION['withoutAjax']) && $_SESSION['withoutAjax'] == 1){
+if(isset($_SESSION['Erreur'])){
 
-	echo $_SESSION['err'];
-	var_dump($_SESSION);
+	echo $_SESSION['Erreur'];
 }
 ?>
 <!DOCTYPE html>
@@ -24,8 +23,8 @@ if(isset($_SESSION['withoutAjax']) && $_SESSION['withoutAjax'] == 1){
 			<input type="submit" value="Server connect">
 		</form>
 	</div>
-	<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
 	<script src="js/function.js"></script>
-	<script src="js/postRequest.js"></script>
+	<script src="js/postRequest.js"></script> -->
 </body>
 </html>
