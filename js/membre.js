@@ -3,15 +3,9 @@ $('document').ready(function () {
     if (window.localStorage.length > 0) { //Si le localStorage n'est pas vide alors l'utilisateur est connecter 
         ftpFunction.filAriane()//fil d'ariane navigation pour l'utilisateur
         //Le localStorage n'est pas fixe il peut changer
-        var html = localStorage.getItem('Dossier_persos'); //On récupère les dossiers du client dans le local Storage
+        let html = localStorage.getItem('Dossier_persos'); //On récupère les dossiers du client dans le local Storage
         html = JSON.parse(html); // On parse le contenu qui était en json
-        html.Dossier_persos.map(function (allContentMainFolder) { //On parcours tous son dossier persos
-            allContentMainFolder = allContentMainFolder.split(" ");
-            return allContentMainFolder;
-        }).forEach(typeFile => {
-            ftpFunction.TypeOfFiles(typeFile, localStorage.getItem('oldFolder')); /** @function  */
-        })
-
+        ftpFunction.contentOfAnyFolder(html.Dossier_persos);
         //Quand l'utilisateur click sur deconnexion il supprime les variable du localStorage et le redirige
         $('#deconnexion').on('click', function (e) {
             ftpFunction
@@ -37,6 +31,9 @@ $('document').ready(function () {
     //pour faire une requête au server 
     $('.lien').on('click', function (e) {
         const url = this.getAttribute('href');
+        const pattern = /[\w\/._]+$/gi
+        const oldFolder = url.match(pattern);
+        (!ftpFunction.paramGet.length) ? ftpFunction.paramGet.push(oldFolder) : '';
         ftpFunction.getRequest(url) //Nous renvoie une promesse
             .done(getAllFolderByGet => { // renvoie du JSON
                 ftpFunction.reDefinedOldFolder(getAllFolderByGet) // On stock le json dans le localStorage

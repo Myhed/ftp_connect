@@ -1,6 +1,5 @@
 const ftpFunction = {
     paramGet: [], // variables for get request param
-
     /**
      * @function void
      * @param {String} allFiles
@@ -14,11 +13,24 @@ const ftpFunction = {
             container.append(`
                  <tr border="1">
                      <td><img src='img/file.png' height='20'><a href="${allFiles[21]}">${allFiles[21]}</a></td>
+                     <td><a href="#" class="download">Download</a></td>
                 </tr>`);
         } else {
-            container.append(`<tr><td><img src='img/dossier.png' height='20'><a href="http://localhost/ftp_connect/getRequest.php?folder=${paramUrlExist}${allFiles[21]}" class="lien">${allFiles[21]}</a></td>
+            container.append(`
+            <tr>
+                <td><img src='img/dossier.png' height='20'><a href="http://localhost/ftp_connect/getRequest.php?folder=${paramUrlExist}${allFiles[21]}" class="lien">${allFiles[21]}</a></td>
+                
+                <td><a href="#" class="download">Download</a></td>
            </tr> `);
         }
+    },
+    contentOfAnyFolder: folder => {
+       folder.map(function (allContentMainFolder) { //On parcours tous son dossier persos
+            allContentMainFolder = allContentMainFolder.split(" ");
+            return allContentMainFolder;
+        }).forEach(typeFile => {
+            ftpFunction.TypeOfFiles(typeFile, localStorage.getItem('oldFolder'));
+        })
     },
     /**
      * @return {Promise}
@@ -36,6 +48,7 @@ const ftpFunction = {
     filAriane: () => {
         const htmlFilAriane = $('#filAriane');
         const fil_Ariane = localStorage.getItem('oldFolder');
+        const pattern = /[\w\._]+$/gi
         let tableStringHref = [];
         if (fil_Ariane) {
             let tabFilAriane = fil_Ariane.split('/');
@@ -46,21 +59,24 @@ const ftpFunction = {
                     tableStringHref.push(acc)
                     return acc
                 }, '')
-            for (var i = 0; i < tableStringHref.length; i++) {
-                var aElement = ftpFunction.creatElement('a', 'filAriane');
-                var pattern = /[\w\._]+$/gi
-                var nameFolder = tableStringHref[i].match(pattern)
+                ftpFunction.creatFolderRoot($('#filArianeContainer'));
+            for (let i = 0; i < tableStringHref.length; i++) {
+                const aElement = ftpFunction.creatElement('a', 'filAriane');
+                let nameFolder = tableStringHref[i].match(pattern)
                 if (i < tableStringHref.length - 1) {
-                    ftpFunction.initElementHtml(htmlFilAriane.children().eq(i), nameFolder[0], { class: 'lien previous', href: `http://localhost/ftp_connect/getRequest.php?folder=${tableStringHref[i]}` })
+                    ftpFunction
+                    .initElementHtml(
+                        htmlFilAriane.children().eq(i), nameFolder[0], 
+                        { class: 'lien previous', href: `http://localhost/ftp_connect/getRequest.php?folder=${tableStringHref[i]}` } )
                 } else {
                     ftpFunction.initElementHtml(htmlFilAriane.children().eq(i), nameFolder[0], { id: 'currentFolder' }, 'Dossier courant ')
                 }
             }
-            htmlFilAriane.css({
+            $('#filArianeContainer').css({
                 "display": "block"
             })
         } else {
-            htmlFilAriane.css({
+            $('#filArianeContainer').css({
                 "display": "none"
             })
         }
@@ -71,8 +87,19 @@ const ftpFunction = {
      */
     creatFolderRoot: (parent) => {
 
-        ftpFunction.creatElement('a', 'filAriane');
-        ftpFunction.initElementHtml(parent, 'Dossier racine', { class: 'lien previous', href: 'http://localhost/ftp_connect/getRequest.php?folder=' })
+        ftpFunction.creatElement('a', 'backToRacine');
+        console.log(parent.children().eq(1).children())
+        ftpFunction.initElementHtml(parent.children().eq(1).children().eq(0), 'Dossier racine', { class: 'racine previous', href: '#' })
+        parent.children().eq(1).children().eq(0).on('click',function(e){
+            ftpFunction.getRequest('http://localhost/ftp_connect/getRequest.php?folder=.')
+            .done(racineFolder => {
+                localStorage.removeItem('Dossier_persos');
+                localStorage.removeItem('oldFolder');
+                localStorage.setItem('Dossier_persos',racineFolder);
+                ftpFunction.paramGet = [];
+                window.location='membre.php';
+            })
+        })
     },
     initElementHtml: (parent, name, attr = {}, addTermOptional = null) => {
         if (addTermOptional !== null) {
@@ -91,10 +118,7 @@ const ftpFunction = {
      * @param {url} [url=http://yourUrlOfYourServer]
      * @type {String} 
      */
-    getRequest: url => {
-        const pattern = /[\w\/._]+$/gi
-        const oldFolder = url.match(pattern);
-        (!ftpFunction.paramGet.length) ? ftpFunction.paramGet.push(oldFolder) : '';
+    getRequest:(url,dataType=null) => {
         return $.ajax({
             method: 'GET',
             url: url,
@@ -122,5 +146,3 @@ const ftpFunction = {
     }
 
 }
-
-

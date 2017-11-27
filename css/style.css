@@ -21,17 +21,37 @@ body {
     -moz-border-radius: 15px;
 }
 #table tr {
-
     text-align: left;
 }
-#filAriane{
-
+#table tr td {
+    padding:0 10px 15px 35px;
+}
+#table tr td .download{
+    margin-top:6px;
+    display: block;
+}
+#filArianeContainer{
     background-color:#D18B33;
     width:auto;
     padding:6px 10px;
     margin-top:15px;
     text-align: left;
     display:none;
+}
+#filAriane{
+    float: left;
+}
+.download{
+
+    color:white;
+    text-align: center;
+    padding:4px 6px;
+    width:100px;
+    background:skyblue;
+}
+#backToRacine{
+
+    float: right;
 }
 #err {
     background: tomato;

@@ -3,16 +3,16 @@ $(function() {
     const password = $('#password');
     const form = $('form');
     const err = $('#err');
+
     err.fadeOut();
     form.submit(function() {
-        var valName = name.val();
-        var valPass = password.val();
+        const valName = name.val();
+        const valPass = password.val();
         $.ajax({
                 method: "POST",
                 url: "http://localhost/ftp_connect/postRequest.php",
                 data: { name: valName, password: valPass },
                 beforeSend: function(xhr) {
-
                     xhr.overrideMimeType("text/plain; charset=x-user-defined");
                 }
             })

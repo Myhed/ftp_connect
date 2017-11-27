@@ -18,7 +18,11 @@ if(!isset($_SESSION['identifiant'])){
     <div class="container">
         <a href="deconnexion.php" id="deconnexion">Se déconnecter</a>
         <div class="clearfix"></div>
-        <div id="filAriane"></div>
+        <div id="filArianeContainer">
+            <div id="filAriane"></div>
+            <div id="backToRacine"></div>
+            <div class="clearfix"></div>
+        </div>
         <table id="table"></table>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
