@@ -15,8 +15,18 @@ if(!isset($_SESSION['identifiant'])){
     <title>Document</title>
 </head>
 <body>
+    <div id="mask"></div>
+        <div id="form">
+            <span id="closePopUp">X</span>
+        <form action="" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" />
+        </form>
+     </div>
     <div class="container">
-        <a href="deconnexion.php" id="deconnexion">Se déconnecter</a>
+        <ul id="menu">
+            <li id="deconnexion"> <a href="deconnexion.php">Se déconnecter</a></li>
+            <li id="upload"><a href="#" >Upload</a></li>
+        </ul>
         <div class="clearfix"></div>
         <div id="filArianeContainer">
             <div id="filAriane"></div>
@@ -28,5 +38,10 @@ if(!isset($_SESSION['identifiant'])){
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="js/function.js"></script>
     <script src="js/membre.js"></script>
+    <script src="js/popupUpload.js"></script>
+    <script src="js/download.js"></script>
+    <script src="js/DownLoadFile.js"></script>
+    <script src="js/dropzone.js"></script>
+    <script src="js/upload.js"></script>
 </body>
 </html>

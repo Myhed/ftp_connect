@@ -59,7 +59,7 @@ body {
     margin: 0 auto;
 }
 
-.container>#deconnexion {
+/*.container>#deconnexion {
     text-decoration: none;
     margin-right: 5px;
     padding: 7px 15px;
@@ -72,8 +72,98 @@ body {
     transition:all ease-in 0.3s; 
 }
 
+
+
+.container>#upload{
+      text-decoration: none;
+    margin-right: 5px;
+    padding: 7px 15px;
+    opacity: 0.7;
+    background: orange;
+    color: white;
+    width:100px;
+    float: right;
+    display: block;
+    transition:all ease-in 0.3s; 
+}*/
+.container >#menu{
+    float: right;
+}
+#menu li{
+    list-style: none;
+    display: inline-block;
+}
+
+#menu li a {
+ text-decoration: none;
+    margin-right: 5px;
+    margin-top:10px;
+    padding: 7px 15px;
+    opacity: 0.7;
+    background: orange;
+    color: white;
+    width:100px;
+    float: right;
+    display: block;
+    transition:all ease-in 0.3s;
+}
+
 .clearfix{
     clear:both;
+    display: block;
+}
+#DropZone{
+    width:450px;
+}
+#form{
+    position:absolute;
+    z-index:6;
+    background-color:white;
+    width:650px;
+    right:0;
+    left:0;
+    margin:0 auto;
+    opacity: 0;
+    transition: all ease-in 0.5s;
+    display:none;
+    box-shadow: 0 3px 0 1px rgba(0,0,0,0.2);
+}
+#closePopUp{
+    position:absolute;
+    right:-15px;
+    top:-27px;
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    background:tomato;
+    border-radius: 50%;
+    padding:6px 10px;
+    cursor:pointer;
+    border:3px solid tomato;
+}
+
+.formIsOn{
+    display:block!important;
+}
+.formIsMove{
+    transform:translateY(125px);
+    opacity: 1!important;
+    height: 250px;
+}
+#mask{
+    height: 100%!important;
+    left:0!important;
+    right:0!important;
+    top:0!important;
+    bottom:0!important;
+    position: fixed!important;
+    background: rgba(0,0,0,0.5)!important;
+    z-index: 5!important;
+    display:none;
+}
+
+.maskIsOn{
+    display: block!important;
 }
 
 .previous{
@@ -99,7 +189,7 @@ body {
      background:rgba(195,10,16,1);
 }
 
-.container > #deconnexion:hover{
+.container > #menu li a:hover{
 
     opacity: 1;
 }

@@ -11,6 +11,17 @@
 	* @param
 	*/
 
+	/**
+	*	function matches	
+	*/
+
+	function getTypeOfFile($file){
+		
+		preg_match('/([\w]+)([\.][\w]+)/',$file,$matches,PREG_OFFSET_CAPTURE);
+
+		return $matches;
+	}
+
 	
 		
 

@@ -12,15 +12,14 @@ const ftpFunction = {
         if (allFiles[0].match($pattern)) {
             container.append(`
                  <tr border="1">
-                     <td><img src='img/file.png' height='20'><a href="${allFiles[21]}">${allFiles[21]}</a></td>
-                     <td><a href="#" class="download">Download</a></td>
+                     <td><img src='img/file.png' height='20'><a href="${allFiles[allFiles.length-1]}">${allFiles[allFiles.length-1]}</a></td>
+                     <td><a href="downLoadFile.php?download=${allFiles[allFiles.length-1]}" download="${allFiles[allFiles.length-1]}" class="download">Download</a></td>
                 </tr>`);
+
         } else {
             container.append(`
             <tr>
-                <td><img src='img/dossier.png' height='20'><a href="http://localhost/ftp_connect/getRequest.php?folder=${paramUrlExist}${allFiles[21]}" class="lien">${allFiles[21]}</a></td>
-                
-                <td><a href="#" class="download">Download</a></td>
+                <td><img src='img/dossier.png' height='20'><a href="http://localhost/ftp_connect/getRequest.php?folder=${paramUrlExist}${allFiles[allFiles.length-1]}" class="lien">${allFiles[allFiles.length-1]}</a></td>
            </tr> `);
         }
     },
