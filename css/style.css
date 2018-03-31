@@ -193,3 +193,7 @@ body {
 
     opacity: 1;
 }
+.date{
+    color:#ccc;
+    font-family:Helvetica,Arial sans-serif;
+}

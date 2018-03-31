@@ -4,6 +4,7 @@ if(!isset($_SESSION['identifiant'])){
 
     header('location:index.php');
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,8 +19,9 @@ if(!isset($_SESSION['identifiant'])){
     <div id="mask"></div>
         <div id="form">
             <span id="closePopUp">X</span>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="" method="post" enctype="multipart/form-data" name="upload">
             <input type="file" name="file" />
+            <button>upload</button>
         </form>
      </div>
     <div class="container">
