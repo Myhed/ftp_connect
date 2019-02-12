@@ -1,9 +1,10 @@
 <?php
+require_once('init.php');
 	$val = ['err' => true];
 if($_POST){
 	extract($_POST);
 	if(!empty($name)&&!empty($password)){
-		$conn_id= ftp_connect("localhost");
+		$conn_id= ftp_connect($host);
 		if($conn_id){
 			if($login = ftp_login($conn_id,$name,$password)){
 				$val['err'] = false;

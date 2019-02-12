@@ -1,5 +1,6 @@
 <?php 
 require_once("function.php");
+require_once('init.php');
 session_start();
 $val = ['err' => true,];
 $_SESSION['withoutAjax'] = 0; 
@@ -12,7 +13,7 @@ if(isset($_SESSION['identifiant'])){
        }else{
        	 $_SESSION['folder'] = '/'.$_GET['folder'];
        }
-        $conn_id= ftp_connect("localhost");
+        $conn_id= ftp_connect($host);
         ftp_login($conn_id,$_SESSION['identifiant'],$_SESSION['mdp']);
         $val['Dossier_persos'] = ftp_rawlist($conn_id,$repertoire);
        echo json_encode($val);
