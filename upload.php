@@ -1,9 +1,10 @@
 <?php 
 session_start();
+require_once('init.php');
 $val = ['err' => true,];
 if(isset($_POST)){
 
-	    $conn_id= ftp_connect("localhost");
+	    $conn_id= ftp_connect($host);
         $login = ftp_login($conn_id,$_SESSION['identifiant'],$_SESSION['mdp']);
         $path = $_FILES['file']['tmp_name'];
         $tmpPath = explode('\\',$_FILES['file']['tmp_name']);
